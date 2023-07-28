@@ -1,0 +1,9 @@
+@import "../../assets/styles/form.css";
+
+.blur span p {
+  display: inline;
+}
+
+.blur-container {
+  min-height: 90vh;
+}

@@ -1,0 +1,59 @@
+<!-- <div>
+  <h1>REGISTER</h1>
+  <form (submit)="register()">
+    <label>
+      Username:
+      <input type="text" [(ngModel)]="username" name="username" required />
+    </label>
+    <br />
+    <label>
+      Password:
+      <input type="password" [(ngModel)]="password" name="password" required />
+    </label>
+    <br />
+    <button type="submit">Register</button>
+    <div *ngIf="error" class="error">{{ error }}</div>
+  </form>
+</div> -->
+
+<div class="blur-container">
+  <div class="blur p-5">
+    <h2 class="form-title mb-5">Register</h2>
+
+    <div class="form-floating mb-4 m-auto">
+      <input
+        type="text"
+        class="form-control bg-transparent"
+        [(ngModel)]="uname"
+        name="uname"
+        id="uname"
+        placeholder="Username"
+      />
+      <label for="uname">Username</label>
+    </div>
+    <div class="form-floating m-auto mb-4">
+      <input
+        type="password"
+        class="form-control bg-transparent"
+        id="pass"
+        [(ngModel)]="pass"
+        name="pass"
+        placeholder="Password"
+      />
+      <label for="pass">Password</label>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary btn-lg btn-submit p-3 px-5 mb-4"
+      (click)="register()"
+    >
+      Submit
+    </button>
+
+    <span class="register">
+      Already have an account?
+      <a href="/login"><b>Sign in here!</b></a>
+    </span>
+  </div>
+</div>
