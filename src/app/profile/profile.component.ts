@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie';
-import { ServerResponse } from 'src/main';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-profile',
@@ -12,24 +10,7 @@ import { ServerResponse } from 'src/main';
 export class ProfileComponent {
   username: string = '';
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private cookieService: CookieService
-  ) {
-    // http.get<ServerResponse>('http://localhost:3000/profile').subscribe(
-    //   (res) => {
-    //     if (res.success) {
-    //       this.username = res.message;
-    //     } else {
-    //       router.navigate(['/login']);
-    //     }
-    //   },
-    //   (err) => {
-    //     router.navigate(['/login']);
-    //     console.error(err);
-    //   }
-    // );
+  constructor(private router: Router, private cookieService: CookieService) {
     const user = cookieService.get('user');
 
     if (user) {
@@ -37,5 +18,10 @@ export class ProfileComponent {
     } else {
       router.navigate(['/login']);
     }
+  }
+
+  logout() {
+    this.cookieService.delete('user');
+    this.router.navigate(['/login']);
   }
 }

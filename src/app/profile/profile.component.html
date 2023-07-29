@@ -1,18 +1,21 @@
 <div class="blur-container">
   <div class="blur p-5">
-    <h3 class="form-title mb-5">Welcome Profile {{ username }}</h3>
+    <p class="form-title mb-5">
+      Welcome <b>{{ username }}</b>
+    </p>
 
     <p>
-      This is a project made for a task given by Guvi techologies. Users can
-      sign up, sign in, view and edit their profile simultaneously!
+      If you can see this page, you have been successfully logged in, and
+      everything is working perfectly!
     </p>
     <br />
 
-    <span class="register">
-      <a href="/login"><b>Sign in </b></a>
-      <p>or</p>
-      <a href="/register"><b> Sign up </b></a>
-      <p>to continue</p>
-    </span>
+    <button
+      type="button"
+      class="btn btn-primary btn-lg btn-submit p-3 px-5 mb-4"
+      (click)="logout()"
+    >
+      Logout
+    </button>
   </div>
 </div>

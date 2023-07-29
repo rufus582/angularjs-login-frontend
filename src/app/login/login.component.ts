@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ServerResponse } from 'src/main';
-import { CookieService } from 'ngx-cookie';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,11 @@ export class LoginComponent {
     private http: HttpClient,
     private router: Router,
     private cookieService: CookieService
-  ) {}
+  ) {
+    if (cookieService.get('user')) {
+      router.navigate(['/profile']);
+    }
+  }
 
   login() {
     this.http
@@ -29,14 +33,14 @@ export class LoginComponent {
       .subscribe(
         (res) => {
           if (res.success) {
-            this.cookieService.put('user', this.uname);
+            this.cookieService.set('user', this.uname);
             this.router.navigate(['/profile']);
           } else {
             alert(res.message);
           }
         },
         (err) => {
-          alert('An error occurred while logging in.');
+          alert(err.error.message);
           console.error(err);
         }
       );

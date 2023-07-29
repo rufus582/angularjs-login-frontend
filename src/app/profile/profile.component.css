@@ -4,6 +4,14 @@
   display: inline;
 }
 
+.form-title {
+  font-size: 40px;
+}
+
+.form-title b {
+  color: #ff9deb;
+}
+
 .blur-container {
   min-height: 90vh;
 }

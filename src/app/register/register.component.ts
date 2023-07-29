@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServerResponse } from 'src/main';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,15 @@ export class RegisterComponent {
   pass: string = '';
   title: any;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private cookieService: CookieService
+  ) {
+    if (cookieService.get('user')) {
+      router.navigate(['/profile']);
+    }
+  }
 
   register() {
     this.http
@@ -29,7 +38,7 @@ export class RegisterComponent {
           }
         },
         (err) => {
-          alert('An error occurred while registering.');
+          alert(err.error.message);
           console.error(err);
         }
       );
